@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>C:\Users\Raf\OneDrive\Software\RacoSoft\ClearStandbyMemoryScheduler App Install\</PublishUrl>
+    <PublishUrl>C:\Users\Raf\Dropbox\Coding\GitHub\Software\RacoSoft\ClearStandbyMemoryScheduler\v1.0.0.7\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,8 +27,8 @@
     <SupportUrl>https://github.com/rafcolson/ClearStandbyMemoryScheduler</SupportUrl>
     <ProductName>ClearStandbyMemoryScheduler</ProductName>
     <PublisherName>RacoSoft</PublisherName>
-    <ApplicationRevision>6</ApplicationRevision>
-    <ApplicationVersion>1.0.0.6</ApplicationVersion>
+    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationVersion>1.0.0.7</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
