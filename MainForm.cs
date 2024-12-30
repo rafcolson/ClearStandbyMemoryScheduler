@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace ClearStandbyMemoryScheduler
 {
     internal partial class MainForm : Form
     {
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_TOOLWINDOW = 0x00000080;
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr window, int index, int value);
+        [DllImport("user32.dll")]
+        public static extern int GetWindowLong(IntPtr window, int index);
+
         private static System.Timers.Timer SystemTimer { get; set; }
         private static Timer Timer { get; set; }
         private static bool IsProcessing { get; set; }
@@ -15,7 +24,17 @@ namespace ClearStandbyMemoryScheduler
         {
             InitializeComponent();
             Resize += MainForm_Resize;
+            FormClosing += MainForm_FormClosing;
             Icon = MainNotifyIcon.Icon = Properties.Resources.MainIcon;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason != CloseReason.WindowsShutDown && Properties.Settings.Default.HideToSystemTray)
+            {
+                WindowState = FormWindowState.Minimized;
+                e.Cancel = true;
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -25,7 +44,6 @@ namespace ClearStandbyMemoryScheduler
             if (Properties.Settings.Default.HideToSystemTray)
             {
                 WindowState = FormWindowState.Minimized;
-                Hide();
             }
             if (Properties.Settings.Default.RunAtStartup)
             {
@@ -38,6 +56,17 @@ namespace ClearStandbyMemoryScheduler
             bool minimizedAndHidden = WindowState == FormWindowState.Minimized && Properties.Settings.Default.HideToSystemTray;
             ShowInTaskbar = !minimizedAndHidden;
             MainNotifyIcon.Visible = minimizedAndHidden;
+            int windowStyle = GetWindowLong(Handle, GWL_EXSTYLE);
+            if (minimizedAndHidden)
+            {
+                windowStyle |= WS_EX_TOOLWINDOW;
+                Hide();
+            }
+            else
+            {
+                windowStyle &= ~WS_EX_TOOLWINDOW;
+            }
+            SetWindowLong(Handle, GWL_EXSTYLE, windowStyle);
         }
 
         private void InitializeSettings()
@@ -69,13 +98,6 @@ namespace ClearStandbyMemoryScheduler
         private static void ExecuteClearStandbyMemory(object source, System.Timers.ElapsedEventArgs e)
         {
             ClearStandbyMemory.Execute();
-        }
-
-        private void ShowMainForm()
-        {
-            MainNotifyIcon.Visible = false;
-            ShowInTaskbar = true;
-            WindowState = FormWindowState.Normal;
         }
 
         private void Start()
@@ -122,6 +144,13 @@ namespace ClearStandbyMemoryScheduler
             return timer;
         }
 
+        private void PopUp()
+        {
+            Opacity = 0;
+            Show();
+            Opacity = 1;
+        }
+
         #endregion
 
         #region Events
@@ -136,11 +165,6 @@ namespace ClearStandbyMemoryScheduler
             {
                 TimerProgressBar.Value = 0;
             }
-        }
-
-        private void MainNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            ShowMainForm();
         }
 
         private void TimeIntervalNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -168,35 +192,27 @@ namespace ClearStandbyMemoryScheduler
             Program.RunAtStartup(RunAtStartupCheckBox.Checked);
         }
 
-        private void StartButton_Click(object sender, EventArgs e)
+        private void MainNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Start();
+            PopUp();
+            WindowState = FormWindowState.Normal;
         }
 
-        private void StopButton_Click(object sender, EventArgs e)
-        {
-            Stop();
-        }
+        private void StartButton_Click(object sender, EventArgs e) => Start();
+
+        private void StopButton_Click(object sender, EventArgs e) => Stop();
 
         private void OpenStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowMainForm();
+            PopUp();
+            WindowState = FormWindowState.Normal;
         }
 
-        private void StartToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Start();
-        }
+        private void StartToolStripMenuItem_Click(object sender, EventArgs e) => Start();
 
-        private void StopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Stop();
-        }
+        private void StopToolStripMenuItem_Click(object sender, EventArgs e) => Stop();
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
 
         private void MainNotifyIconContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {

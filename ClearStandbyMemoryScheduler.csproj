@@ -13,7 +13,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>F:\OneDrive\Software\RacoSoft\ClearStandbyMemoryScheduler App Install\</PublishUrl>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\Raf\OneDrive\Software\RacoSoft\ClearStandbyMemoryScheduler App Install\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,8 +27,8 @@
     <SupportUrl>https://github.com/rafcolson/ClearStandbyMemoryScheduler</SupportUrl>
     <ProductName>ClearStandbyMemoryScheduler</ProductName>
     <PublisherName>RacoSoft</PublisherName>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>1.0.0.6</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -61,9 +62,6 @@
   <PropertyGroup />
   <PropertyGroup>
     <ManifestCertificateThumbprint>9FD3EB7359D8C06EFAD191BB8EE05D8A1F7236F5</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>ClearStandbyMemoryScheduler_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
