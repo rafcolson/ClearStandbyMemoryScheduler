@@ -1,8 +1,10 @@
 # ClearStandbyMemoryScheduler
 
-With this small application *Stand-by Memory* is cleared every specified interval. The process is started and stopped manually or run automatically at system startup and optionally hidden to the system tray with a context menu. This single instance application is automatically run as administrator. Settings are stored with changes made.
+This little application clears *Stand-by memory* every specified number of minutes, depending on a condition or not. If the threshold is set to _Available memory_, the operation is skipped when the available memory exceeds a certain amount of MB. The same goes for when the threshold is set to _Stand-by memory_, when the stand-by memory does not exceed a certain amount of MB. With _No threshold_ set, it will always clear after the specified number of minutes. PCs with less available RAM may benefit more from evaluating every minute if the available memory is less than a GB or so. It is better to clear only when absolutely necessary.
 
-![ClearStandbyMemoryScheduler](https://user-images.githubusercontent.com/10002909/138174063-bee5a9b5-1ada-4cf0-8acc-c2727ac66ff0.png)
+The process is started and stopped manually or run automatically at system startup and optionally hidden to the system tray with a context menu. This single instance application is automatically run as administrator. Settings are stored with changes made.
+
+![ClearStandbyMemoryScheduler](https://github.com/user-attachments/assets/a6769a9f-3dbe-4f23-86ae-5ade93872d08)
 
 License
 -------
@@ -18,4 +20,4 @@ Note: If you are a developer and want to fork this project, you should run Visua
 
 Download and Install
 --------------------
-You can find the latest release [here](https://github.com/rafcolson/ClearStandbyMemoryScheduler/releases). Download and run *ClearStandbyMemoryScheduler-x64.msi*.
+You can find the latest release [here](https://github.com/rafcolson/ClearStandbyMemoryScheduler/releases). Download and run *ClearStandbyMemoryScheduler.msi*.

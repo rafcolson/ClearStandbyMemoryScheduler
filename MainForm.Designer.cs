@@ -31,7 +31,6 @@ namespace ClearStandbyMemoryScheduler
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.TimeIntervalLabel = new System.Windows.Forms.Label();
             this.TimeIntervalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.ExecuteImmediatelyCheckBox = new System.Windows.Forms.CheckBox();
             this.HideToSystemTrayCheckBox = new System.Windows.Forms.CheckBox();
@@ -47,32 +46,25 @@ namespace ClearStandbyMemoryScheduler
             this.StopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ThresholdTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ThresholdNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ThresholdComboBox = new System.Windows.Forms.ComboBox();
             this.TimeIntervalTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.TimeIntervalLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.TimeIntervalNumericUpDown)).BeginInit();
             this.StartStopTableLayoutPanel.SuspendLayout();
             this.MainNotifyIconContextMenuStrip.SuspendLayout();
             this.MainTableLayoutPanel.SuspendLayout();
+            this.ThresholdTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ThresholdNumericUpDown)).BeginInit();
             this.TimeIntervalTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // TimeIntervalLabel
-            // 
-            this.TimeIntervalLabel.AutoSize = true;
-            this.TimeIntervalLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TimeIntervalLabel.Location = new System.Drawing.Point(0, 0);
-            this.TimeIntervalLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.TimeIntervalLabel.Name = "TimeIntervalLabel";
-            this.TimeIntervalLabel.Size = new System.Drawing.Size(171, 30);
-            this.TimeIntervalLabel.TabIndex = 0;
-            this.TimeIntervalLabel.Text = "Time interval (m)";
-            this.TimeIntervalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TimeIntervalNumericUpDown
             // 
             this.TimeIntervalNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TimeIntervalNumericUpDown.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeIntervalNumericUpDown.Location = new System.Drawing.Point(171, 0);
-            this.TimeIntervalNumericUpDown.Margin = new System.Windows.Forms.Padding(0);
+            this.TimeIntervalNumericUpDown.Location = new System.Drawing.Point(203, 3);
             this.TimeIntervalNumericUpDown.Maximum = new decimal(new int[] {
             60,
             0,
@@ -84,7 +76,7 @@ namespace ClearStandbyMemoryScheduler
             0,
             0});
             this.TimeIntervalNumericUpDown.Name = "TimeIntervalNumericUpDown";
-            this.TimeIntervalNumericUpDown.Size = new System.Drawing.Size(115, 27);
+            this.TimeIntervalNumericUpDown.Size = new System.Drawing.Size(80, 27);
             this.TimeIntervalNumericUpDown.TabIndex = 4;
             this.TimeIntervalNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TimeIntervalNumericUpDown.Value = new decimal(new int[] {
@@ -99,9 +91,9 @@ namespace ClearStandbyMemoryScheduler
             this.ExecuteImmediatelyCheckBox.AutoSize = true;
             this.ExecuteImmediatelyCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ExecuteImmediatelyCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ExecuteImmediatelyCheckBox.Location = new System.Drawing.Point(9, 45);
+            this.ExecuteImmediatelyCheckBox.Location = new System.Drawing.Point(9, 85);
             this.ExecuteImmediatelyCheckBox.Name = "ExecuteImmediatelyCheckBox";
-            this.ExecuteImmediatelyCheckBox.Size = new System.Drawing.Size(286, 30);
+            this.ExecuteImmediatelyCheckBox.Size = new System.Drawing.Size(286, 32);
             this.ExecuteImmediatelyCheckBox.TabIndex = 3;
             this.ExecuteImmediatelyCheckBox.Text = "Execute immediately";
             this.ExecuteImmediatelyCheckBox.UseVisualStyleBackColor = true;
@@ -112,9 +104,9 @@ namespace ClearStandbyMemoryScheduler
             this.HideToSystemTrayCheckBox.AutoSize = true;
             this.HideToSystemTrayCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.HideToSystemTrayCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HideToSystemTrayCheckBox.Location = new System.Drawing.Point(9, 81);
+            this.HideToSystemTrayCheckBox.Location = new System.Drawing.Point(9, 123);
             this.HideToSystemTrayCheckBox.Name = "HideToSystemTrayCheckBox";
-            this.HideToSystemTrayCheckBox.Size = new System.Drawing.Size(286, 30);
+            this.HideToSystemTrayCheckBox.Size = new System.Drawing.Size(286, 32);
             this.HideToSystemTrayCheckBox.TabIndex = 4;
             this.HideToSystemTrayCheckBox.Text = "Hide to system tray";
             this.HideToSystemTrayCheckBox.UseVisualStyleBackColor = true;
@@ -125,9 +117,9 @@ namespace ClearStandbyMemoryScheduler
             this.RunAtStartupCheckBox.AutoSize = true;
             this.RunAtStartupCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.RunAtStartupCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RunAtStartupCheckBox.Location = new System.Drawing.Point(9, 117);
+            this.RunAtStartupCheckBox.Location = new System.Drawing.Point(9, 161);
             this.RunAtStartupCheckBox.Name = "RunAtStartupCheckBox";
-            this.RunAtStartupCheckBox.Size = new System.Drawing.Size(286, 30);
+            this.RunAtStartupCheckBox.Size = new System.Drawing.Size(286, 32);
             this.RunAtStartupCheckBox.TabIndex = 8;
             this.RunAtStartupCheckBox.Text = "Run at startup";
             this.RunAtStartupCheckBox.UseVisualStyleBackColor = true;
@@ -136,8 +128,9 @@ namespace ClearStandbyMemoryScheduler
             // TimerProgressBar
             // 
             this.TimerProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TimerProgressBar.Location = new System.Drawing.Point(10, 166);
+            this.TimerProgressBar.Location = new System.Drawing.Point(10, 212);
             this.TimerProgressBar.Margin = new System.Windows.Forms.Padding(4, 16, 4, 8);
+            this.TimerProgressBar.MaximumSize = new System.Drawing.Size(0, 12);
             this.TimerProgressBar.Name = "TimerProgressBar";
             this.TimerProgressBar.Size = new System.Drawing.Size(284, 12);
             this.TimerProgressBar.TabIndex = 12;
@@ -150,8 +143,9 @@ namespace ClearStandbyMemoryScheduler
             this.StartStopTableLayoutPanel.Controls.Add(this.StopButton, 0, 0);
             this.StartStopTableLayoutPanel.Controls.Add(this.StartButton, 0, 0);
             this.StartStopTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StartStopTableLayoutPanel.Location = new System.Drawing.Point(6, 190);
+            this.StartStopTableLayoutPanel.Location = new System.Drawing.Point(6, 238);
             this.StartStopTableLayoutPanel.Margin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.StartStopTableLayoutPanel.MaximumSize = new System.Drawing.Size(0, 37);
             this.StartStopTableLayoutPanel.Name = "StartStopTableLayoutPanel";
             this.StartStopTableLayoutPanel.RowCount = 1;
             this.StartStopTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -236,54 +230,123 @@ namespace ClearStandbyMemoryScheduler
             // 
             this.MainTableLayoutPanel.ColumnCount = 1;
             this.MainTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainTableLayoutPanel.Controls.Add(this.TimeIntervalTableLayoutPanel, 0, 0);
-            this.MainTableLayoutPanel.Controls.Add(this.StartStopTableLayoutPanel, 0, 5);
-            this.MainTableLayoutPanel.Controls.Add(this.TimerProgressBar, 0, 4);
-            this.MainTableLayoutPanel.Controls.Add(this.RunAtStartupCheckBox, 0, 3);
-            this.MainTableLayoutPanel.Controls.Add(this.HideToSystemTrayCheckBox, 0, 2);
-            this.MainTableLayoutPanel.Controls.Add(this.ExecuteImmediatelyCheckBox, 0, 1);
+            this.MainTableLayoutPanel.Controls.Add(this.ThresholdTableLayoutPanel, 0, 0);
+            this.MainTableLayoutPanel.Controls.Add(this.TimeIntervalTableLayoutPanel, 0, 1);
+            this.MainTableLayoutPanel.Controls.Add(this.StartStopTableLayoutPanel, 0, 6);
+            this.MainTableLayoutPanel.Controls.Add(this.TimerProgressBar, 0, 5);
+            this.MainTableLayoutPanel.Controls.Add(this.RunAtStartupCheckBox, 0, 4);
+            this.MainTableLayoutPanel.Controls.Add(this.HideToSystemTrayCheckBox, 0, 3);
+            this.MainTableLayoutPanel.Controls.Add(this.ExecuteImmediatelyCheckBox, 0, 2);
             this.MainTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.MainTableLayoutPanel.Name = "MainTableLayoutPanel";
             this.MainTableLayoutPanel.Padding = new System.Windows.Forms.Padding(6);
-            this.MainTableLayoutPanel.RowCount = 6;
-            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainTableLayoutPanel.Size = new System.Drawing.Size(304, 233);
+            this.MainTableLayoutPanel.RowCount = 7;
+            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.MainTableLayoutPanel.Size = new System.Drawing.Size(304, 281);
             this.MainTableLayoutPanel.TabIndex = 1;
+            // 
+            // ThresholdTableLayoutPanel
+            // 
+            this.ThresholdTableLayoutPanel.ColumnCount = 2;
+            this.ThresholdTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.ThresholdTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.ThresholdTableLayoutPanel.Controls.Add(this.ThresholdNumericUpDown, 1, 0);
+            this.ThresholdTableLayoutPanel.Controls.Add(this.ThresholdComboBox, 0, 0);
+            this.ThresholdTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ThresholdTableLayoutPanel.Location = new System.Drawing.Point(9, 9);
+            this.ThresholdTableLayoutPanel.Name = "ThresholdTableLayoutPanel";
+            this.ThresholdTableLayoutPanel.RowCount = 1;
+            this.ThresholdTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ThresholdTableLayoutPanel.Size = new System.Drawing.Size(286, 32);
+            this.ThresholdTableLayoutPanel.TabIndex = 21;
+            // 
+            // ThresholdNumericUpDown
+            // 
+            this.ThresholdNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ThresholdNumericUpDown.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ThresholdNumericUpDown.Location = new System.Drawing.Point(203, 3);
+            this.ThresholdNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.ThresholdNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ThresholdNumericUpDown.Name = "ThresholdNumericUpDown";
+            this.ThresholdNumericUpDown.Size = new System.Drawing.Size(80, 27);
+            this.ThresholdNumericUpDown.TabIndex = 4;
+            this.ThresholdNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ThresholdNumericUpDown.Value = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.ThresholdNumericUpDown.ValueChanged += new System.EventHandler(this.ThresholdNumericUpDown_ValueChanged);
+            // 
+            // ThresholdComboBox
+            // 
+            this.ThresholdComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ThresholdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ThresholdComboBox.FormattingEnabled = true;
+            this.ThresholdComboBox.Items.AddRange(new object[] {
+            "No threshold",
+            "Available memory (MB)",
+            "Stand-by memory (MB)"});
+            this.ThresholdComboBox.Location = new System.Drawing.Point(3, 3);
+            this.ThresholdComboBox.Name = "ThresholdComboBox";
+            this.ThresholdComboBox.Size = new System.Drawing.Size(194, 29);
+            this.ThresholdComboBox.TabIndex = 20;
+            this.ThresholdComboBox.SelectedIndexChanged += new System.EventHandler(this.ThresholdComboBox_SelectedIndexChanged);
             // 
             // TimeIntervalTableLayoutPanel
             // 
             this.TimeIntervalTableLayoutPanel.ColumnCount = 2;
-            this.TimeIntervalTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.TimeIntervalTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.TimeIntervalTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.TimeIntervalTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.TimeIntervalTableLayoutPanel.Controls.Add(this.TimeIntervalNumericUpDown, 1, 0);
             this.TimeIntervalTableLayoutPanel.Controls.Add(this.TimeIntervalLabel, 0, 0);
             this.TimeIntervalTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TimeIntervalTableLayoutPanel.Location = new System.Drawing.Point(9, 9);
+            this.TimeIntervalTableLayoutPanel.Location = new System.Drawing.Point(9, 47);
             this.TimeIntervalTableLayoutPanel.Name = "TimeIntervalTableLayoutPanel";
             this.TimeIntervalTableLayoutPanel.RowCount = 1;
             this.TimeIntervalTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TimeIntervalTableLayoutPanel.Size = new System.Drawing.Size(286, 30);
+            this.TimeIntervalTableLayoutPanel.Size = new System.Drawing.Size(286, 32);
             this.TimeIntervalTableLayoutPanel.TabIndex = 0;
+            // 
+            // TimeIntervalLabel
+            // 
+            this.TimeIntervalLabel.AutoSize = true;
+            this.TimeIntervalLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TimeIntervalLabel.Location = new System.Drawing.Point(0, 0);
+            this.TimeIntervalLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.TimeIntervalLabel.Name = "TimeIntervalLabel";
+            this.TimeIntervalLabel.Size = new System.Drawing.Size(200, 32);
+            this.TimeIntervalLabel.TabIndex = 0;
+            this.TimeIntervalLabel.Text = "Time interval (minutes)";
+            this.TimeIntervalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(304, 233);
+            this.ClientSize = new System.Drawing.Size(304, 281);
             this.Controls.Add(this.MainTableLayoutPanel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(320, 272);
-            this.MinimumSize = new System.Drawing.Size(320, 272);
+            this.MaximumSize = new System.Drawing.Size(320, 320);
+            this.MinimumSize = new System.Drawing.Size(320, 320);
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -296,6 +359,8 @@ namespace ClearStandbyMemoryScheduler
             this.MainNotifyIconContextMenuStrip.ResumeLayout(false);
             this.MainTableLayoutPanel.ResumeLayout(false);
             this.MainTableLayoutPanel.PerformLayout();
+            this.ThresholdTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ThresholdNumericUpDown)).EndInit();
             this.TimeIntervalTableLayoutPanel.ResumeLayout(false);
             this.TimeIntervalTableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -303,7 +368,6 @@ namespace ClearStandbyMemoryScheduler
         }
 
         #endregion
-        private System.Windows.Forms.Label TimeIntervalLabel;
         private System.Windows.Forms.NumericUpDown TimeIntervalNumericUpDown;
         private System.Windows.Forms.NotifyIcon MainNotifyIcon;
         private System.Windows.Forms.CheckBox ExecuteImmediatelyCheckBox;
@@ -320,5 +384,9 @@ namespace ClearStandbyMemoryScheduler
         private System.Windows.Forms.ToolStripMenuItem OpenToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel MainTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel TimeIntervalTableLayoutPanel;
+        private System.Windows.Forms.ComboBox ThresholdComboBox;
+        private System.Windows.Forms.Label TimeIntervalLabel;
+        private System.Windows.Forms.TableLayoutPanel ThresholdTableLayoutPanel;
+        private System.Windows.Forms.NumericUpDown ThresholdNumericUpDown;
     }
 }

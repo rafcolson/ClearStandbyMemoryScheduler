@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Management;
 using System.Windows.Forms;
 using System.Security.Permissions;
 using System.Runtime.InteropServices;
@@ -11,15 +13,25 @@ namespace ClearStandbyMemoryScheduler
         private const int WS_EX_TOOLWINDOW = 0x00000080;
         private const int WM_SYSCOMMAND = 0x0112;
         private const int SC_MINIMIZE = 0xF020;
+        private const string QUERY = "SELECT * FROM Win32_PerfFormattedData_PerfOS_Memory";
+
+        private static readonly ManagementObjectSearcher Searcher = new ManagementObjectSearcher(QUERY);
+        private static System.Timers.Timer SystemTimer { get; set; }
+        private static Timer Timer { get; set; }
+        private static bool IsProcessing { get; set; }
+
+        private class MemoryInfo
+        {
+            public int Standby { get; set; }
+            public int Available { get; set; }
+            public MemoryInfo(int standby = 0, int available = 0) { Standby = standby; Available = available; }
+            public override string ToString() => $"{Standby}, {Available}";
+        }
 
         [DllImport("user32.dll")]
         public static extern int SetWindowLong(IntPtr window, int index, int value);
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr window, int index);
-
-        private static System.Timers.Timer SystemTimer { get; set; }
-        private static Timer Timer { get; set; }
-        private static bool IsProcessing { get; set; }
 
         #region Initialization
 
@@ -52,6 +64,10 @@ namespace ClearStandbyMemoryScheduler
                 HiddenInSystemTray(true);
                 e.Cancel = true;
             }
+            else
+            {
+                Searcher.Dispose();
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -70,6 +86,8 @@ namespace ClearStandbyMemoryScheduler
 
         private void InitializeSettings()
         {
+            ThresholdComboBox.SelectedIndex = Properties.Settings.Default.ThresholdIndex;
+            ThresholdNumericUpDown.Value = Properties.Settings.Default.ThresholdValue;
             TimeIntervalNumericUpDown.Value = Properties.Settings.Default.TimeInterval;
             ExecuteImmediatelyCheckBox.Checked = Properties.Settings.Default.ExecuteImmediately;
             HideToSystemTrayCheckBox.Checked = Properties.Settings.Default.HideToSystemTray;
@@ -82,21 +100,63 @@ namespace ClearStandbyMemoryScheduler
 
         private void UpdateControls()
         {
-            StartButton.Enabled = !IsProcessing;
-            StopButton.Enabled = IsProcessing;
+            ThresholdComboBox.Enabled = !IsProcessing;
+            ThresholdNumericUpDown.Enabled = !IsProcessing && ThresholdComboBox.SelectedIndex != 0;
             TimeIntervalTableLayoutPanel.Enabled = !IsProcessing;
             ExecuteImmediatelyCheckBox.Enabled = !IsProcessing;
             HideToSystemTrayCheckBox.Enabled = !IsProcessing;
             RunAtStartupCheckBox.Enabled = !IsProcessing;
+            StartButton.Enabled = !IsProcessing;
+            StopButton.Enabled = IsProcessing;
         }
 
         #endregion
 
         #region Main
 
+        private static MemoryInfo GetMemoryInfo()
+        {
+            ulong standby = 0;
+            ulong available = 0;
+            using (ManagementObjectCollection moc = Searcher.Get())
+            {
+                foreach (ManagementObject mo in moc.Cast<ManagementObject>())
+                {
+                    ulong a = (ulong)mo.GetPropertyValue("FreeAndZeroPageListBytes") / 1048576;
+                    ulong c = (ulong)mo.GetPropertyValue("StandbyCacheCoreBytes") / 1048576;
+                    ulong np = (ulong)mo.GetPropertyValue("StandbyCacheNormalPriorityBytes") / 1048576;
+                    ulong r = (ulong)mo.GetPropertyValue("StandbyCacheReserveBytes") / 1048576;
+                    standby += c + np;
+                    available += a - r - standby;
+                    mo.Dispose();
+                }
+            }
+            return new MemoryInfo((int)standby, (int)available);
+        }
+
         private static void ExecuteClearStandbyMemory(object source, System.Timers.ElapsedEventArgs e)
         {
-            ClearStandbyMemory.Execute();
+            if (Properties.Settings.Default.ThresholdIndex == 0)
+            {
+                ClearStandbyMemory.Execute();
+            }
+            else
+            {
+                int i = Properties.Settings.Default.ThresholdIndex;
+                decimal d = Properties.Settings.Default.ThresholdValue;
+                MemoryInfo mi = GetMemoryInfo();
+                if (i == 1)
+                {
+                    if (d > mi.Available)
+                    {
+                        ClearStandbyMemory.Execute();
+                    }
+                }
+                else if (i == 2 && d < mi.Standby)
+                {
+                    ClearStandbyMemory.Execute();
+                }
+            }
         }
 
         private void HiddenInSystemTray(bool enabled)
@@ -185,6 +245,19 @@ namespace ClearStandbyMemoryScheduler
             {
                 TimerProgressBar.Value = 0;
             }
+        }
+
+        private void ThresholdComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ThresholdNumericUpDown.Enabled = ThresholdComboBox.SelectedIndex != 0;
+            Properties.Settings.Default.ThresholdIndex = ThresholdComboBox.SelectedIndex;
+            Properties.Settings.Default.Save();
+        }
+
+        private void ThresholdNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ThresholdValue = ThresholdNumericUpDown.Value;
+            Properties.Settings.Default.Save();
         }
 
         private void TimeIntervalNumericUpDown_ValueChanged(object sender, EventArgs e)

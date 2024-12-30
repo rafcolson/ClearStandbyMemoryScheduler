@@ -271,15 +271,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ClearStandbyMemoryScheduler"
-        "ProductCode" = "8:{0D8FB520-F5D1-4B81-9279-68B40F9E8A36}"
-        "PackageCode" = "8:{768B03F9-0246-4B5B-A17E-523CA1090B5B}"
+        "ProductCode" = "8:{42C975E8-F13B-4BD7-99CC-4F79E0F6D3E9}"
+        "PackageCode" = "8:{DAF6460D-BEBC-43AD-80A1-B993CA2BE42F}"
         "UpgradeCode" = "8:{2D0E41FD-0A7B-45BD-9E41-4CA4708C37C4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.2"
         "Manufacturer" = "8:RacoSoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/rafcolson/ClearStandbyMemoryScheduler/issues"
@@ -923,7 +923,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B1F15C970DC342EA969ABF9F737C92BB"
             {
-            "SourcePath" = "8:..\\obj\\Release\\ClearStandbyMemoryScheduler.exe"
+            "SourcePath" = "8:..\\obj\\Debug\\ClearStandbyMemoryScheduler.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2101E0096C3345AFAEADF240FF38B629"
