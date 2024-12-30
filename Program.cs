@@ -37,13 +37,9 @@ namespace ClearStandbyMemoryScheduler
 
     internal static class Program
     {
-        private const string DISPLAY_NAME_VALUE = "DisplayName";
-        private const string DISPLAY_ICON_VALUE = "DisplayIcon";
-        private const string ICON_RELATIVE_PATH = @"Properties\icons\MainIcon.ico";
         private const string CURRENT_VERSION_PATH = @"SOFTWARE\Microsoft\Windows\CurrentVersion";
 
         private static readonly string RUN_KEY = Path.Combine(CURRENT_VERSION_PATH, "Run");
-        private static readonly string UNINSTALL_KEY = Path.Combine(CURRENT_VERSION_PATH, "Uninstall");
 
         internal static readonly string AppName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
 
@@ -65,7 +61,6 @@ namespace ClearStandbyMemoryScheduler
                         Process.Start(processInfo);
                         if (ApplicationDeployment.IsNetworkDeployed)
                         {
-                            SetAddRemoveProgramsIcon(ICON_RELATIVE_PATH);
                             Application.Exit();
                         }
                         return;
@@ -81,37 +76,6 @@ namespace ClearStandbyMemoryScheduler
             Application.SetCompatibleTextRenderingDefault(false);
             SingleInstanceApplication app = new SingleInstanceApplication(new MainForm());
             app.Run(Environment.GetCommandLineArgs());
-        }
-
-        private static void SetAddRemoveProgramsIcon(string relativePath)
-        {
-            try
-            {
-                if (ApplicationDeployment.CurrentDeployment.IsFirstRun)
-                {
-                    using (RegistryKey uninstallRegKey = Registry.CurrentUser.OpenSubKey(UNINSTALL_KEY))
-                    {
-                        string appName = AppName;
-                        string[] subKeyNames = uninstallRegKey.GetSubKeyNames();
-                        for (int i = 0; i < subKeyNames.Length; i++)
-                        {
-                            using (RegistryKey regKey = uninstallRegKey.OpenSubKey(subKeyNames[i], true))
-                            {
-                                if (appName == regKey.GetValue(DISPLAY_NAME_VALUE) as string)
-                                {
-                                    string fullPath = Path.Combine(Application.StartupPath, relativePath);
-                                    regKey.SetValue(DISPLAY_ICON_VALUE, fullPath);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show($"Failed setting display icon for deployment '{AppName}'.");
-            }
         }
 
         internal static void RunAtStartup(bool enable)

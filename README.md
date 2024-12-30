@@ -18,4 +18,4 @@ Note: If you are a developer and want to fork this project, you should run Visua
 
 Download and Install
 --------------------
-You can find the latest release [here](https://github.com/rafcolson/ClearStandbyMemoryScheduler/releases). Download and extract *ClearStandbyMemoryScheduler.App.Install.zip* and run *setup.exe*.
+You can find the latest release [here](https://github.com/rafcolson/ClearStandbyMemoryScheduler/releases). Download and run *ClearStandbyMemoryScheduler-x64.msi*.
