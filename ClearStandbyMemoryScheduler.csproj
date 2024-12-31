@@ -27,8 +27,8 @@
     <SupportUrl>https://github.com/rafcolson/ClearStandbyMemoryScheduler</SupportUrl>
     <ProductName>ClearStandbyMemoryScheduler</ProductName>
     <PublisherName>RacoSoft</PublisherName>
-    <ApplicationRevision>11</ApplicationRevision>
-    <ApplicationVersion>1.0.2.0</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.3.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

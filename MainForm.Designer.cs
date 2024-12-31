@@ -278,7 +278,7 @@ namespace ClearStandbyMemoryScheduler
             0,
             0});
             this.ThresholdNumericUpDown.Minimum = new decimal(new int[] {
-            1,
+            0,
             0,
             0,
             0});
@@ -301,7 +301,7 @@ namespace ClearStandbyMemoryScheduler
             this.ThresholdComboBox.Items.AddRange(new object[] {
             "No threshold",
             "Available memory (MB)",
-            "Stand-by memory (MB)"});
+            "Standby memory (MB)"});
             this.ThresholdComboBox.Location = new System.Drawing.Point(3, 3);
             this.ThresholdComboBox.Name = "ThresholdComboBox";
             this.ThresholdComboBox.Size = new System.Drawing.Size(194, 29);

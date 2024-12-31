@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Management;
 using System.Windows.Forms;
 using System.Security.Permissions;
 using System.Runtime.InteropServices;
@@ -13,20 +11,10 @@ namespace ClearStandbyMemoryScheduler
         private const int WS_EX_TOOLWINDOW = 0x00000080;
         private const int WM_SYSCOMMAND = 0x0112;
         private const int SC_MINIMIZE = 0xF020;
-        private const string QUERY = "SELECT * FROM Win32_PerfFormattedData_PerfOS_Memory";
 
-        private static readonly ManagementObjectSearcher Searcher = new ManagementObjectSearcher(QUERY);
         private static System.Timers.Timer SystemTimer { get; set; }
         private static Timer Timer { get; set; }
         private static bool IsProcessing { get; set; }
-
-        private class MemoryInfo
-        {
-            public int Standby { get; set; }
-            public int Available { get; set; }
-            public MemoryInfo(int standby = 0, int available = 0) { Standby = standby; Available = available; }
-            public override string ToString() => $"{Standby}, {Available}";
-        }
 
         [DllImport("user32.dll")]
         public static extern int SetWindowLong(IntPtr window, int index, int value);
@@ -66,7 +54,7 @@ namespace ClearStandbyMemoryScheduler
             }
             else
             {
-                Searcher.Dispose();
+                ClearStandbyMemory.Dispose();
             }
         }
 
@@ -114,49 +102,11 @@ namespace ClearStandbyMemoryScheduler
 
         #region Main
 
-        private static MemoryInfo GetMemoryInfo()
-        {
-            ulong standby = 0;
-            ulong available = 0;
-            using (ManagementObjectCollection moc = Searcher.Get())
-            {
-                foreach (ManagementObject mo in moc.Cast<ManagementObject>())
-                {
-                    ulong a = (ulong)mo.GetPropertyValue("FreeAndZeroPageListBytes") / 1048576;
-                    ulong c = (ulong)mo.GetPropertyValue("StandbyCacheCoreBytes") / 1048576;
-                    ulong np = (ulong)mo.GetPropertyValue("StandbyCacheNormalPriorityBytes") / 1048576;
-                    ulong r = (ulong)mo.GetPropertyValue("StandbyCacheReserveBytes") / 1048576;
-                    standby += c + np;
-                    available += a - r - standby;
-                    mo.Dispose();
-                }
-            }
-            return new MemoryInfo((int)standby, (int)available);
-        }
-
         private static void ExecuteClearStandbyMemory(object source, System.Timers.ElapsedEventArgs e)
         {
-            if (Properties.Settings.Default.ThresholdIndex == 0)
-            {
-                ClearStandbyMemory.Execute();
-            }
-            else
-            {
-                int i = Properties.Settings.Default.ThresholdIndex;
-                decimal d = Properties.Settings.Default.ThresholdValue;
-                MemoryInfo mi = GetMemoryInfo();
-                if (i == 1)
-                {
-                    if (d > mi.Available)
-                    {
-                        ClearStandbyMemory.Execute();
-                    }
-                }
-                else if (i == 2 && d < mi.Standby)
-                {
-                    ClearStandbyMemory.Execute();
-                }
-            }
+            MemoryInfo.Threshold threshold = (MemoryInfo.Threshold)Properties.Settings.Default.ThresholdIndex;
+            decimal megabytes = Properties.Settings.Default.ThresholdValue;
+            ClearStandbyMemory.Execute(threshold, megabytes);
         }
 
         private void HiddenInSystemTray(bool enabled)
