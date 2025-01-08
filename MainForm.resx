@@ -127,32 +127,32 @@
   <data name="OpenToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAIlJREFUSEvtkkEKhEAQxObXe/Xn7go2FEXFHgf3ZiAITSwvjpe77A+JpHhFpA0E
-        HXSRNhB00EXaQNBBF7kKtvNZ6KCLUHCM+73aJJKCGvd73ZKIBzp+R8SDz099cVYkBfoRpW5JhIL6iFJt
-        ErkK/vqbJnTQRdpA0EEXaQNBB10kxSsiKV7xZZYxvqwR2w5tksCwAAAAAElFTkSuQmCC
+        vAAADrwBlbxySQAAAGtJREFUSEvtkkEKwCAMBPNrr/15JQchDAnVpD01A3tQ1tmLIs0h90sJYTGbkMeC
+        gdIekAtnSksDKuc9pemBJec9pakBKz9JCAvDebyTEK9gRyyUpgeUNWKhtDSgfPpNPSj92UA1ISxm0+wz
+        AawR2w5pglqBAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="StartToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAH9JREFUSEtjGAWjAAQ2A7EshEkb8B+IPwBxPhAzgQSoDUAWwPBRINYCYqoCZAtA
-        +BcQdwAxOxBTBaBbAMO3gdgRiCkG2AyH4X9AvAiIhYCYbIDNYHT8HIhDgZgsgM1AdEwzC2gaRDSLZJom
-        U5plNJoWFeuAWArCHAWjAAMwMAAA0aNNIxMPvK4AAAAASUVORK5CYII=
+        vAAADrwBlbxySQAAAItJREFUSEvt1LsNwkAQhOFPJOSESDRAFxRBHbRBHRRAQg1UQQGkxASAHBhZIwc8
+        vNn90iR7szvSvWg0cMIqi1PyxA07zHJxCrqAXmes0/Avw4BOd+wxT+OvZECvCzZp/oUcPNQDByyy6Rty
+        6Jiu2Gbjp+SwMZUFlG5R2SGXXtOyh1b6VRyxzGKj8eYF0aNNI0BpKisAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="StopToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAERJREFUSEvty7ENACAMwLD+/zQ8kMFipZYyZta/zmOsZonVLLGaJVazxGqWWM0S
-        q1liNUusZonVLLGaJVazxGqW1n9mLsz4wz2WexuxAAAAAElFTkSuQmCC
+        vAAADrwBlbxySQAAAEJJREFUSEvty7ENACAMwLD+/zTsmSxWailjZta3zmOso8Y6aqyjxjpqrKPGOmqs
+        o8Y6aqyjxjpqrKPGOmqso7Z+dAHM+MM9AL2DbgAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="ExitToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAItJREFUSEvtk0EKgDAMBPscD/pcfaKin9AsXkrZbdNgbw4MlLDdQNH008v9kRIW
-        jihh4YgSFo4oYeGWm3kWM0ke8riaYDbzJZL8ssfLXEwwmbuJuaQs8MiWSFgB7AHPJWHlsIfQgprlEx3v
-        kcMKarJyzCVlQcvhnykc+qMpJSwcUcLCESUsHPHHS0oPXq4aRKEI38gAAAAASUVORK5CYII=
+        vAAADrwBlbxySQAAAIFJREFUSEvtk8EJgDAQBLccH1qulqhoE0pAHw6uiYfx5cB8wt4ehET6ecj6khYG
+        o1oYjGphMKqFwRIHSXOtBf0+12KJhQU5F0ndPttIGt9e4JZYOHz4hHRdFhZ/tuBOXtGEzhMcznlVns4t
+        LMhZ/Zkmq340p4XBqBYGo1oYjPpTzgZerhpEY2m+AgAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

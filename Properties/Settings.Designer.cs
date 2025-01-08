@@ -25,6 +25,30 @@ namespace ClearStandbyMemoryScheduler.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ThresholdIndex {
+            get {
+                return ((int)(this["ThresholdIndex"]));
+            }
+            set {
+                this["ThresholdIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public decimal ThresholdValue {
+            get {
+                return ((decimal)(this["ThresholdValue"]));
+            }
+            set {
+                this["ThresholdValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public decimal TimeInterval {
             get {

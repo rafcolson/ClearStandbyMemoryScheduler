@@ -12,14 +12,14 @@ namespace ClearStandbyMemoryScheduler
         private const int WM_SYSCOMMAND = 0x0112;
         private const int SC_MINIMIZE = 0xF020;
 
+        private static System.Timers.Timer SystemTimer { get; set; }
+        private static Timer Timer { get; set; }
+        private static bool IsProcessing { get; set; }
+
         [DllImport("user32.dll")]
         public static extern int SetWindowLong(IntPtr window, int index, int value);
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr window, int index);
-
-        private static System.Timers.Timer SystemTimer { get; set; }
-        private static Timer Timer { get; set; }
-        private static bool IsProcessing { get; set; }
 
         #region Initialization
 
@@ -52,6 +52,10 @@ namespace ClearStandbyMemoryScheduler
                 HiddenInSystemTray(true);
                 e.Cancel = true;
             }
+            else
+            {
+                ClearStandbyMemory.Dispose();
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -70,6 +74,8 @@ namespace ClearStandbyMemoryScheduler
 
         private void InitializeSettings()
         {
+            ThresholdComboBox.SelectedIndex = Properties.Settings.Default.ThresholdIndex;
+            ThresholdNumericUpDown.Value = Properties.Settings.Default.ThresholdValue;
             TimeIntervalNumericUpDown.Value = Properties.Settings.Default.TimeInterval;
             ExecuteImmediatelyCheckBox.Checked = Properties.Settings.Default.ExecuteImmediately;
             HideToSystemTrayCheckBox.Checked = Properties.Settings.Default.HideToSystemTray;
@@ -82,12 +88,14 @@ namespace ClearStandbyMemoryScheduler
 
         private void UpdateControls()
         {
-            StartButton.Enabled = !IsProcessing;
-            StopButton.Enabled = IsProcessing;
+            ThresholdComboBox.Enabled = !IsProcessing;
+            ThresholdNumericUpDown.Enabled = !IsProcessing && ThresholdComboBox.SelectedIndex != 0;
             TimeIntervalTableLayoutPanel.Enabled = !IsProcessing;
             ExecuteImmediatelyCheckBox.Enabled = !IsProcessing;
             HideToSystemTrayCheckBox.Enabled = !IsProcessing;
             RunAtStartupCheckBox.Enabled = !IsProcessing;
+            StartButton.Enabled = !IsProcessing;
+            StopButton.Enabled = IsProcessing;
         }
 
         #endregion
@@ -96,7 +104,9 @@ namespace ClearStandbyMemoryScheduler
 
         private static void ExecuteClearStandbyMemory(object source, System.Timers.ElapsedEventArgs e)
         {
-            ClearStandbyMemory.Execute();
+            MemoryInfo.Threshold threshold = (MemoryInfo.Threshold)Properties.Settings.Default.ThresholdIndex;
+            decimal megabytes = Properties.Settings.Default.ThresholdValue;
+            ClearStandbyMemory.Execute(threshold, megabytes);
         }
 
         private void HiddenInSystemTray(bool enabled)
@@ -185,6 +195,19 @@ namespace ClearStandbyMemoryScheduler
             {
                 TimerProgressBar.Value = 0;
             }
+        }
+
+        private void ThresholdComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ThresholdNumericUpDown.Enabled = ThresholdComboBox.SelectedIndex != 0;
+            Properties.Settings.Default.ThresholdIndex = ThresholdComboBox.SelectedIndex;
+            Properties.Settings.Default.Save();
+        }
+
+        private void ThresholdNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ThresholdValue = ThresholdNumericUpDown.Value;
+            Properties.Settings.Default.Save();
         }
 
         private void TimeIntervalNumericUpDown_ValueChanged(object sender, EventArgs e)

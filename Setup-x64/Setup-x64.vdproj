@@ -21,12 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_351EC5AE01F3599A2D28B9C297B4000B"
-        "OwnerKey" = "8:_B1F15C970DC342EA969ABF9F737C92BB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B1F15C970DC342EA969ABF9F737C92BB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -41,12 +35,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B1F15C970DC342EA969ABF9F737C92BB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_351EC5AE01F3599A2D28B9C297B4000B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -164,37 +152,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_351EC5AE01F3599A2D28B9C297B4000B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_351EC5AE01F3599A2D28B9C297B4000B"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_2101E0096C3345AFAEADF240FF38B629"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FAE7C76940F84387945D207626D43FA1"
             {
             "SourcePath" = "8:License.rtf"
@@ -271,19 +228,19 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ClearStandbyMemoryScheduler"
-        "ProductCode" = "8:{0D8FB520-F5D1-4B81-9279-68B40F9E8A36}"
-        "PackageCode" = "8:{768B03F9-0246-4B5B-A17E-523CA1090B5B}"
+        "ProductCode" = "8:{F40DEC5F-18F1-42A9-A275-372936C9BF82}"
+        "PackageCode" = "8:{C6BCD5A2-9BF0-49D8-8F61-728BB701EF2E}"
         "UpgradeCode" = "8:{2D0E41FD-0A7B-45BD-9E41-4CA4708C37C4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:RacoSoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/rafcolson/ClearStandbyMemoryScheduler/issues"
-        "Title" = "8:ClearStandbyMemoryScheduler-x64"
+        "Title" = "8:ClearStandbyMemoryScheduler"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Raco"
         "Keywords" = "8:"
