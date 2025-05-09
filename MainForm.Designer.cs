@@ -67,7 +67,7 @@ namespace ClearStandbyMemoryScheduler
             this.TimeIntervalNumericUpDown.Location = new System.Drawing.Point(406, 6);
             this.TimeIntervalNumericUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.TimeIntervalNumericUpDown.Maximum = new decimal(new int[] {
-            60,
+            3600,
             0,
             0,
             0});
@@ -78,10 +78,10 @@ namespace ClearStandbyMemoryScheduler
             0});
             this.TimeIntervalNumericUpDown.Name = "TimeIntervalNumericUpDown";
             this.TimeIntervalNumericUpDown.Size = new System.Drawing.Size(160, 50);
-            this.TimeIntervalNumericUpDown.TabIndex = 4;
+            this.TimeIntervalNumericUpDown.TabIndex = 6;
             this.TimeIntervalNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TimeIntervalNumericUpDown.Value = new decimal(new int[] {
-            5,
+            300,
             0,
             0,
             0});
@@ -96,7 +96,7 @@ namespace ClearStandbyMemoryScheduler
             this.ExecuteImmediatelyCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 9, 3);
             this.ExecuteImmediatelyCheckBox.Name = "ExecuteImmediatelyCheckBox";
             this.ExecuteImmediatelyCheckBox.Size = new System.Drawing.Size(566, 73);
-            this.ExecuteImmediatelyCheckBox.TabIndex = 3;
+            this.ExecuteImmediatelyCheckBox.TabIndex = 7;
             this.ExecuteImmediatelyCheckBox.Text = "Execute immediately";
             this.ExecuteImmediatelyCheckBox.UseVisualStyleBackColor = true;
             this.ExecuteImmediatelyCheckBox.CheckedChanged += new System.EventHandler(this.ExecuteImmediatelyCheckBox_CheckedChanged);
@@ -110,7 +110,7 @@ namespace ClearStandbyMemoryScheduler
             this.HideToSystemTrayCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 9, 3);
             this.HideToSystemTrayCheckBox.Name = "HideToSystemTrayCheckBox";
             this.HideToSystemTrayCheckBox.Size = new System.Drawing.Size(566, 73);
-            this.HideToSystemTrayCheckBox.TabIndex = 4;
+            this.HideToSystemTrayCheckBox.TabIndex = 8;
             this.HideToSystemTrayCheckBox.Text = "Hide to system tray";
             this.HideToSystemTrayCheckBox.UseVisualStyleBackColor = true;
             this.HideToSystemTrayCheckBox.CheckedChanged += new System.EventHandler(this.HideToSystemTrayCheckBox_CheckedChanged);
@@ -124,7 +124,7 @@ namespace ClearStandbyMemoryScheduler
             this.RunAtStartupCheckBox.Margin = new System.Windows.Forms.Padding(3, 3, 9, 3);
             this.RunAtStartupCheckBox.Name = "RunAtStartupCheckBox";
             this.RunAtStartupCheckBox.Size = new System.Drawing.Size(566, 73);
-            this.RunAtStartupCheckBox.TabIndex = 8;
+            this.RunAtStartupCheckBox.TabIndex = 9;
             this.RunAtStartupCheckBox.Text = "Run at startup";
             this.RunAtStartupCheckBox.UseVisualStyleBackColor = true;
             this.RunAtStartupCheckBox.CheckedChanged += new System.EventHandler(this.RunAtStartupCheckBox_CheckedChanged);
@@ -136,7 +136,7 @@ namespace ClearStandbyMemoryScheduler
             this.TimerProgressBar.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.TimerProgressBar.Name = "TimerProgressBar";
             this.TimerProgressBar.Size = new System.Drawing.Size(558, 20);
-            this.TimerProgressBar.TabIndex = 12;
+            this.TimerProgressBar.TabIndex = 10;
             // 
             // StartStopTableLayoutPanel
             // 
@@ -155,7 +155,7 @@ namespace ClearStandbyMemoryScheduler
             this.StartStopTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.StartStopTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.StartStopTableLayoutPanel.Size = new System.Drawing.Size(566, 73);
-            this.StartStopTableLayoutPanel.TabIndex = 19;
+            this.StartStopTableLayoutPanel.TabIndex = 11;
             // 
             // StopButton
             // 
@@ -165,7 +165,7 @@ namespace ClearStandbyMemoryScheduler
             this.StopButton.Location = new System.Drawing.Point(286, 3);
             this.StopButton.Name = "StopButton";
             this.StopButton.Size = new System.Drawing.Size(277, 67);
-            this.StopButton.TabIndex = 17;
+            this.StopButton.TabIndex = 13;
             this.StopButton.Text = "Stop";
             this.StopButton.UseVisualStyleBackColor = true;
             this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
@@ -178,7 +178,7 @@ namespace ClearStandbyMemoryScheduler
             this.StartButton.Location = new System.Drawing.Point(3, 3);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(277, 67);
-            this.StartButton.TabIndex = 15;
+            this.StartButton.TabIndex = 12;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
@@ -261,7 +261,7 @@ namespace ClearStandbyMemoryScheduler
             this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
             this.MainTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.MainTableLayoutPanel.Size = new System.Drawing.Size(608, 562);
-            this.MainTableLayoutPanel.TabIndex = 1;
+            this.MainTableLayoutPanel.TabIndex = 0;
             // 
             // ThresholdTableLayoutPanel
             // 
@@ -278,7 +278,7 @@ namespace ClearStandbyMemoryScheduler
             this.ThresholdTableLayoutPanel.RowCount = 1;
             this.ThresholdTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ThresholdTableLayoutPanel.Size = new System.Drawing.Size(572, 73);
-            this.ThresholdTableLayoutPanel.TabIndex = 21;
+            this.ThresholdTableLayoutPanel.TabIndex = 1;
             // 
             // ThresholdNumericUpDown
             // 
@@ -293,7 +293,7 @@ namespace ClearStandbyMemoryScheduler
             0});
             this.ThresholdNumericUpDown.Name = "ThresholdNumericUpDown";
             this.ThresholdNumericUpDown.Size = new System.Drawing.Size(160, 50);
-            this.ThresholdNumericUpDown.TabIndex = 4;
+            this.ThresholdNumericUpDown.TabIndex = 3;
             this.ThresholdNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ThresholdNumericUpDown.Value = new decimal(new int[] {
             5000,
@@ -316,7 +316,7 @@ namespace ClearStandbyMemoryScheduler
             this.ThresholdComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.ThresholdComboBox.Name = "ThresholdComboBox";
             this.ThresholdComboBox.Size = new System.Drawing.Size(388, 53);
-            this.ThresholdComboBox.TabIndex = 20;
+            this.ThresholdComboBox.TabIndex = 2;
             this.ThresholdComboBox.SelectedIndexChanged += new System.EventHandler(this.ThresholdComboBox_SelectedIndexChanged);
             // 
             // TimeIntervalTableLayoutPanel
@@ -334,7 +334,7 @@ namespace ClearStandbyMemoryScheduler
             this.TimeIntervalTableLayoutPanel.RowCount = 1;
             this.TimeIntervalTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TimeIntervalTableLayoutPanel.Size = new System.Drawing.Size(572, 73);
-            this.TimeIntervalTableLayoutPanel.TabIndex = 0;
+            this.TimeIntervalTableLayoutPanel.TabIndex = 4;
             // 
             // TimeIntervalLabel
             // 
@@ -345,8 +345,8 @@ namespace ClearStandbyMemoryScheduler
             this.TimeIntervalLabel.Margin = new System.Windows.Forms.Padding(0);
             this.TimeIntervalLabel.Name = "TimeIntervalLabel";
             this.TimeIntervalLabel.Size = new System.Drawing.Size(400, 73);
-            this.TimeIntervalLabel.TabIndex = 0;
-            this.TimeIntervalLabel.Text = "Time interval (minutes)";
+            this.TimeIntervalLabel.TabIndex = 5;
+            this.TimeIntervalLabel.Text = "Time interval (seconds)";
             this.TimeIntervalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainForm

@@ -26,9 +26,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <SupportUrl>https://github.com/rafcolson/ClearStandbyMemoryScheduler</SupportUrl>
     <ProductName>ClearStandbyMemoryScheduler</ProductName>
-    <PublisherName>RacoSoft</PublisherName>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.0.3.2</ApplicationVersion>
+    <PublisherName>Raco</PublisherName>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.3.3</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

@@ -143,7 +143,7 @@ namespace ClearStandbyMemoryScheduler
             {
                 ExecuteClearStandbyMemory(null, null);
             }
-            int seconds = decimal.ToInt32(TimeIntervalNumericUpDown.Value * 60);
+            int seconds = decimal.ToInt32(TimeIntervalNumericUpDown.Value);
             TimerProgressBar.Maximum = seconds * 1000;
             Timer = GetTimer(seconds);
             IsProcessing = true;
